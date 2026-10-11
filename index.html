@@ -21,6 +21,10 @@
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      </span>
     </nav>
   </header>
 
@@ -223,6 +227,73 @@
       });
     });
     box.addEventListener('click', () => box.close());
+  </script>
+
+  <!-- English / Italian switch: swaps each piece of text using the list below -->
+  <script>
+    const IT = {
+      "Creative Portfolio": "Portfolio creativo",
+      "Index": "Indice", "Work": "Lavori", "About": "Chi sono", "Contact": "Contatti",
+      "Posters": "Poster", "Advertising": "Pubblicità", "Editorial": "Editoria",
+      "Bari, Italy": "Bari, Italia",
+      "Menu & Posters": "Menu & Poster", "Event Identity": "Identità per eventi", "Editorial & Infographics": "Editoria & Infografiche",
+      "Hello!": "Ciao!", "I'm Gaetano Morisco": "Sono Gaetano Morisco",
+      "Product designer by degree, graphic designer at heart — designing for passion since I was 14.":
+        "Product designer per formazione, graphic designer per vocazione — progetto per passione da quando avevo 14 anni.",
+      "Freshly graduated in Product Design, I'm going back to my graphic design roots and setting myself new challenges along the way. I specialise in posters, advertising and branding, but I love design in every single one of its forms.":
+        "Dopo la laurea in Product Design, sto tornando alle mie radici nella grafica e mi metto alla prova con nuove sfide. Mi occupo soprattutto di poster, pubblicità e branding, ma amo il design in ogni sua forma.",
+      "I've interned at Eazycity in Cork, Ireland, and at ZN Consulting in Belgium, where I worked on the EPP Congress in Helsinki — and designed the CON TEMPO Festival campaign as a solo project.":
+        "Ho fatto stage presso Eazycity a Cork, in Irlanda, e presso ZN Consulting in Belgio, dove ho lavorato all'EPP Congress di Helsinki — e ho progettato in autonomia la campagna del CON TEMPO Festival.",
+      "Based in": "Base", "Bari, Italy — for now": "Bari, Italia — per ora",
+      "Lived in": "Ho vissuto in", "Ireland, Belgium, Denmark, Sweden": "Irlanda, Belgio, Danimarca, Svezia",
+      "Posters, Advertising, Branding": "Poster, Pubblicità, Branding",
+      "Menu Design | Social Media | Posters | Advertising | Event Identity | Editorial & Infographics":
+        "Menu | Social Media | Poster | Pubblicità | Identità per eventi | Editoria & Infografiche",
+      "menu & posters": "menu & poster", "posters": "poster", "advertising": "pubblicità",
+      "event identity": "identità eventi", "editorial": "editoria",
+      "Veronero Artisan Coffee / Seasonal Launch / Illustration": "Veronero Artisan Coffee / Lancio stagionale / Illustrazione",
+      "Typography / Illustration / Print": "Tipografia / Illustrazione / Stampa",
+      "CON TEMPO Festival 2019 / Outdoor Campaign": "CON TEMPO Festival 2019 / Campagna outdoor",
+      "EPP Congress Helsinki 2018 / Stage Screens / App": "EPP Congress Helsinki 2018 / Schermi del palco / App",
+      "Turismo a Bari / Infographics / Report": "Turismo a Bari / Infografiche / Report",
+      "Selected": "Lavori", "work": "selezionati",
+      "Concept · Menu / Instagram / Illustration": "Concept · Menu / Instagram / Illustrazione",
+      "Concept · Social Media / Illustration / Seasonal Launch": "Concept · Social Media / Illustrazione / Lancio stagionale",
+      "Solo project · Advertising / Outdoor Campaign": "Progetto personale · Pubblicità / Campagna outdoor",
+      "ZN Consulting · Event Identity / Stage Screens / App": "ZN Consulting · Identità per eventi / Schermi del palco / App",
+      "Editorial / Infographics / Report": "Editoria / Infografiche / Report",
+      "Menu — cover & inside": "Menu — copertina e interno",
+      "Feed mockup — autumn 2026 launch": "Mockup del feed — lancio autunno 2026",
+      "Launch event": "Evento di lancio", "Seasonal menu": "Menu stagionale",
+      "Street banner — photo: Umberto Lopez": "Stendardo — foto: Umberto Lopez",
+      "Billboard": "Cartellone", "Congress hall and stage screens": "Sala del congresso e schermi del palco",
+      "App splash screen": "Schermata di avvio dell'app",
+      "Cover": "Copertina", "Contents": "Indice", "Introduction": "Introduzione", "Strategies": "Strategie",
+      "Let's": "Scrivi", "talk.": "mi.", "Close": "Chiudi"
+    };
+
+    // remember every text piece's English original once
+    const pieces = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const n = walker.currentNode, key = n.nodeValue.trim();
+      if (key && IT[key]) pieces.push({ n, en: n.nodeValue, key });
+    }
+
+    function setLang(lang) {
+      pieces.forEach(p => {
+        // "Scrivi" + "mi." join into one word, so drop the space after it
+        p.n.nodeValue = lang === 'it' ? p.en.replace(p.key, IT[p.key]).replace(/^Scrivi\s+$/, 'Scrivi') : p.en;
+      });
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+    let saved = 'en';
+    try { saved = localStorage.getItem('lang') || 'en'; } catch (e) {}
+    if (saved === 'it') setLang('it');
   </script>
 
 </body>

@@ -68,6 +68,11 @@ section { padding: clamp(64px, 10vw, 140px) var(--gutter); }
 }
 .topbar nav { display: flex; gap: 22px; }
 .topbar nav a:hover { font-family: var(--serif); font-style: italic; }
+.topbar nav { align-items: center; }
+.topbar nav a { white-space: nowrap; }
+.lang { display: inline-flex; border: 1.2px solid var(--ink); border-radius: 999px; padding: 2px; margin-left: 6px; }
+.lang button { font: inherit; font-size: 11px; font-weight: 500; letter-spacing: .06em; background: none; border: 0; color: var(--ink); padding: 3px 9px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -302,7 +307,9 @@ section { padding: clamp(64px, 10vw, 140px) var(--gutter); }
 /* ---------- Phones ---------- */
 @media (max-width: 720px) {
   .topbar > span { display: none; }
-  .topbar nav { gap: 14px; }
+  .topbar nav { gap: 10px; font-size: 12px; }
+  .lang { margin-left: 2px; }
+  .lang button { padding: 3px 7px; }
   .hero { min-height: 80vh; }
   .details { gap: 16px; }
   .about { grid-template-columns: 1fr; }
