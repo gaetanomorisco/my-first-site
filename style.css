@@ -162,12 +162,12 @@ section { padding: clamp(64px, 10vw, 140px) var(--gutter); }
 }
 .hello strong { font-weight: 900; }
 .about-text p {
-  max-width: 46ch;
+  max-width: 400px;
   text-align: justify;
   hyphens: auto;
   margin-bottom: 18px;
 }
-.about-text .lead { font-size: 18px; line-height: 1.4; }
+.about-text .lead { font-size: 18px; line-height: 1.4; text-align: left; hyphens: manual; -webkit-hyphens: manual; max-width: 400px; }
 
 .facts { list-style: none; margin-top: 28px; max-width: 46ch; border-top: 1px solid var(--line); }
 .facts li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
