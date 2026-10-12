@@ -194,3 +194,8 @@ img, video { display: block; }
   .name { font-size: 15px; }
   .topbar nav { font-size: 14px; gap: 9px; }
 }
+
+/* hand-drawn doodle (drawn by Gaetano) */
+.doodle-img { width: clamp(220px, 27vw, 400px); height: auto; }
+.doodle-end { width: clamp(130px, 13vw, 190px); height: auto; }
+@media (max-width: 760px) { .hero .doodle-img { width: 220px; } .contact .doodle-end { display: none; } }
