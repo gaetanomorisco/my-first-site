@@ -11,10 +11,17 @@
   --pill: #232323;
 
   --sans: "Funnel Sans", "Helvetica Neue", Arial, sans-serif;
-  --hand: "Cedarville Cursive", "Bradley Hand", cursive;
+  --hand: "Drowner", "Cedarville Cursive", "Bradley Hand", cursive;
 
   --gutter: clamp(16px, 4vw, 56px);
   --wrap: 1240px;
+}
+
+/* Drowner by Hainz Studio — the font file goes in the fonts/ folder */
+@font-face {
+  font-family: "Drowner";
+  src: url("fonts/Drowner.woff2") format("woff2"), url("fonts/Drowner.woff") format("woff"), url("fonts/Drowner.otf") format("opentype"), url("fonts/Drowner.ttf") format("truetype");
+  font-display: swap;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
