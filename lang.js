@@ -140,12 +140,47 @@ let saved = 'en';
 try { saved = localStorage.getItem('lang') || 'en'; } catch (e) {}
 if (saved === 'it') setLang('it');
 
-// click-to-enlarge on project pages
+// click-to-enlarge on project pages: the image grows out of the one you clicked
+// and shrinks back into it, along the same path.
 const box = document.getElementById('lightbox');
 if (box) {
   const boxImg = box.querySelector('img');
-  document.querySelectorAll('.row img').forEach(img => img.addEventListener('click', () => {
-    boxImg.src = img.src; boxImg.alt = img.alt; box.showModal();
-  }));
-  box.addEventListener('click', () => box.close());
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const ease = 'cubic-bezier(.2,.8,.2,1)';          // settles smoothly, no bounce
+  let source = null, anim = null;
+
+  // transform that makes the big image sit exactly on top of the small one
+  const fromSource = () => {
+    const a = source.getBoundingClientRect(), b = boxImg.getBoundingClientRect();
+    return `translate(${a.left - b.left}px, ${a.top - b.top}px) scale(${a.width / b.width}, ${a.height / b.height})`;
+  };
+  // start any new animation from where the image is right now, so it never jumps
+  const current = () => getComputedStyle(boxImg).transform;
+
+  function open(img) {
+    source = img; boxImg.src = img.src; boxImg.alt = img.alt;
+    box.classList.remove('closing'); box.showModal();
+    const go = () => {
+      if (anim) anim.cancel();
+      anim = calm.matches
+        ? boxImg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease' })
+        : boxImg.animate([{ transform: fromSource() }, { transform: 'none' }], { duration: 420, easing: ease });
+    };
+    boxImg.complete ? go() : boxImg.addEventListener('load', go, { once: true });
+  }
+
+  function close() {
+    if (!box.open) return;
+    const from = current();
+    if (anim) anim.cancel();
+    box.classList.add('closing');
+    anim = calm.matches
+      ? boxImg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease', fill: 'forwards' })
+      : boxImg.animate([{ transform: from === 'none' ? 'none' : from }, { transform: fromSource() }], { duration: 340, easing: ease, fill: 'forwards' });
+    anim.onfinish = () => { anim.cancel(); anim = null; box.classList.remove('closing'); box.close(); };
+  }
+
+  document.querySelectorAll('.row img').forEach(img => img.addEventListener('click', () => open(img)));
+  box.addEventListener('click', close);
+  box.addEventListener('cancel', e => { e.preventDefault(); close(); });   // Esc key
 }
