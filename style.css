@@ -82,7 +82,7 @@ img, video { display: block; }
 .strip .track { display: flex; gap: 10px; width: max-content; animation: slide 60s linear infinite; }
 .strip:hover .track { animation-play-state: paused; }
 .strip a { flex: none; }
-.strip img { height: clamp(160px, 17vw, 240px); width: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; }
+.strip img { height: clamp(160px, 17vw, 240px); width: auto; border-radius: 4px; }
 @keyframes slide { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .strip .track { animation: none; } .strip { overflow-x: auto; } }
 
