@@ -1,5 +1,4 @@
 // English / Italian switch (English by default) and click-to-enlarge images.
-// Every piece of English text that has an Italian version is listed below.
 const IT = {
   "Work": "Lavori",
   "About": "Chi sono",
@@ -83,7 +82,39 @@ const IT = {
   "Invitation": "Invito",
   "Printed booklet — A4, 12 pages": "Opuscolo stampato — A4, 12 pagine",
   "Cover": "Copertina",
-  "Strategies": "Strategie"
+  "Strategies": "Strategie",
+  "work": "lavori",
+  "play": "gioco",
+  "about": "chi sono",
+  "contact": "contatti",
+  "hi! i'm Gaetano": "ciao! sono Gaetano",
+  "i'm a ": "sono un ",
+  "graphic designer": "graphic designer",
+  " making posters, campaigns and brand identities, based in Bari, Italy.": " che crea poster, campagne e identità di marca, a Bari.",
+  "Featured Works": "Lavori in evidenza",
+  "Client, agency and university projects.": "Progetti per clienti, agenzie e università.",
+  "Play": "Gioco",
+  "Personal work and self-initiated concepts.": "Lavori personali e concept di iniziativa propria.",
+  "nice to meet you!": "piacere di conoscerti!",
+  "I've been designing since I was 14. A degree in Product Design taught me to think in systems and to care about how things are made, and I bring that to graphic work.": "Progetto da quando avevo 14 anni. La laurea in Product Design mi ha insegnato a ragionare per sistemi e a curare come le cose vengono realizzate, e porto questo approccio nella grafica.",
+  "Based in": "Base",
+  "Bari, Italy": "Bari, Italia",
+  "Lived in": "Ho vissuto in",
+  "Ireland, Belgium, Denmark, Sweden": "Irlanda, Belgio, Danimarca, Svezia",
+  "Focus": "Focus",
+  "Posters, advertising, branding": "Poster, pubblicità, branding",
+  "Like what you see?": "Ti piace quello che vedi?",
+  "Open to design roles, freelance projects and collaborations.": "Disponibile per posizioni di design, progetti freelance e collaborazioni.",
+  "Advertising": "Pubblicità",
+  "Campaign": "Campagna",
+  "Event Identity": "Identità per eventi",
+  "Editorial Design": "Progettazione editoriale",
+  "Poster Design": "Poster",
+  "Illustration": "Illustrazione",
+  "Menu Design": "Menu",
+  "Social Media": "Social media",
+  "CON TEMPO Festival 2019": "CON TEMPO Festival 2019",
+  "Turismo a Bari": "Turismo a Bari"
 };
 
 const pieces = [];
