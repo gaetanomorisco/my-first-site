@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
+  <header class="topbar float">
     <a href="#top" class="name">Gaetano Morisco</a>
     <nav>
       <a href="#work">work</a>
@@ -33,12 +33,19 @@
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div>
-        <h1>gaetano morisco</h1>
-        <p>I'm a <b>graphic designer</b> making posters, campaigns and brand identities, based in Italy.</p>
-      </div>
-      <img class="doodle doodle-img" src="images/doodle-2.png" alt="" width="800" height="571">
+    <section class="glass-hero">
+      <nav class="hero-nav">
+        <a href="#work">work</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+        <span class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="it" aria-pressed="false">IT</button>
+        </span>
+      </nav>
+      <h1 class="hero-name"><span>gaetano morisco</span></h1>
+      <img class="hero-doodle" src="images/doodle-2.png" alt="" width="800" height="571">
+      <p class="hero-line">I'm a graphic designer making posters, campaigns and brand identities, based in Italy.</p>
     </section>
 
     <div class="strip" aria-hidden="true"><div class="track"><a href="work/contempo.html" tabindex="-1"><img src="images/contempo-poster.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-logo.jpg" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-going-down.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-espresso.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-launch.jpg" alt="" loading="lazy"></a><a href="work/turismo-a-bari.html" tabindex="-1"><img src="images/bari-cover.jpg" alt="" loading="lazy"></a><a href="work/contempo.html" tabindex="-1"><img src="images/contempo-billboard.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-lockups.jpg" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-first-love.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-coldbrew.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-save.jpg" alt="" loading="lazy"></a><a href="work/turismo-a-bari.html" tabindex="-1"><img src="images/bari-strategies.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-icons.gif" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-incongruity.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-cornetto.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-montblanc.jpg" alt="" loading="lazy"></a><a href="work/contempo.html" tabindex="-1"><img src="images/contempo-poster.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-logo.jpg" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-going-down.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-espresso.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-launch.jpg" alt="" loading="lazy"></a><a href="work/turismo-a-bari.html" tabindex="-1"><img src="images/bari-cover.jpg" alt="" loading="lazy"></a><a href="work/contempo.html" tabindex="-1"><img src="images/contempo-billboard.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-lockups.jpg" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-first-love.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-coldbrew.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-save.jpg" alt="" loading="lazy"></a><a href="work/turismo-a-bari.html" tabindex="-1"><img src="images/bari-strategies.jpg" alt="" loading="lazy"></a><a href="work/epp-congress.html" tabindex="-1"><img src="images/epp-icons.gif" alt="" loading="lazy"></a><a href="work/posters.html" tabindex="-1"><img src="images/poster-incongruity.jpg" alt="" loading="lazy"></a><a href="work/esco.html" tabindex="-1"><img src="images/esco-cornetto.jpg" alt="" loading="lazy"></a><a href="work/veronero.html" tabindex="-1"><img src="images/veronero-montblanc.jpg" alt="" loading="lazy"></a></div></div>
@@ -122,6 +129,20 @@
     <p class="legal">© 2026 Gaetano Morisco</p>
   </footer>
 
+  <script>
+    // stretch the name to run edge to edge
+    const nameEl = document.querySelector('.hero-name'), nameSpan = nameEl.querySelector('span');
+    function fitName() {
+      nameEl.style.fontSize = '100px';
+      nameEl.style.fontSize = (100 * nameEl.clientWidth / nameSpan.offsetWidth) + 'px';
+    }
+    document.fonts.ready.then(fitName); addEventListener('resize', fitName);
+    // the top bar slides in once the hero has scrolled away
+    const bar = document.querySelector('.topbar.float');
+    const hero = document.querySelector('.glass-hero');
+    const onScroll = () => bar.classList.toggle('show', scrollY > hero.offsetHeight - 80);
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  </script>
   <script src="lang.js"></script>
 </body>
 </html>
